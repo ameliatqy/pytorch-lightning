@@ -73,7 +73,7 @@ class TrainerLoggingMixin(ABC):
         # log actual metrics
         if self.is_global_zero and self.logger is not None:
             print("scalar_metrics", scalar_metrics.keys())
-            print("step", step)
+            print("step", step, self.current_epoch)
             self.logger.agg_and_log_metrics(scalar_metrics, step=step)
             self.logger.save()
 
