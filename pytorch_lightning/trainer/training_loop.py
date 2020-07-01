@@ -441,7 +441,6 @@ class TrainerTrainLoopMixin(ABC):
         for batch_idx, (batch, is_last_batch) in self.profiler.profile_iterable(
                 enumerate(_with_is_last(train_dataloader)), "get_train_batch"
         ):
-            print("self.global_step", self.global_step)
             # stop epoch if we limited the number of training batches
             if batch_idx >= self.num_training_batches:
                 break
@@ -470,7 +469,6 @@ class TrainerTrainLoopMixin(ABC):
             # -----------------------------------------
             should_check_val = self.should_check_val(batch_idx, is_last_batch)
             if self.fast_dev_run or should_check_val:
-                print("self.global_step run_evaluation", self.global_step)
                 self.run_evaluation(test_mode=False)
 
             # -----------------------------------------
@@ -564,7 +562,6 @@ class TrainerTrainLoopMixin(ABC):
         should_log_metrics = batch_idx % self.row_log_interval == 0 or self.should_stop
         if should_log_metrics or self.fast_dev_run:
             # logs user requested information to logger
-            print("batch_output.batch_log_metrics", batch_output.batch_log_metrics.keys())
             self.log_metrics(batch_output.batch_log_metrics, batch_output.grad_norm_dic)
 
     def save_loggers_in_training_loop(self, batch_idx):

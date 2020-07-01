@@ -97,9 +97,6 @@ class LightningLoggerBase(ABC):
     def _reduce_agg_metrics(self):
         """Aggregate accumulated metrics."""
         # compute the metrics
-        print("self._metrics_to_agg", len(self._metrics_to_agg))
-        for x in self._metrics_to_agg:
-            print(x.keys())
         if not self._metrics_to_agg:
             agg_mets = None
         elif len(self._metrics_to_agg) == 1:
