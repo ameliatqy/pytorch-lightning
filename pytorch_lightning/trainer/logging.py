@@ -63,14 +63,17 @@ class TrainerLoggingMixin(ABC):
         scalar_metrics = self.metrics_to_scalars(metrics)
 
         if "step" in scalar_metrics and step is None:
+            print("STEP POP")
             step = scalar_metrics.pop("step")
         else:
+            print("STEP ELSE")
             # added metrics by Lightning for convenience
             scalar_metrics['epoch'] = self.current_epoch
             step = step if step is not None else self.global_step
         # log actual metrics
         if self.is_global_zero and self.logger is not None:
             print("scalar_metrics", scalar_metrics.keys())
+            print("step", step)
             self.logger.agg_and_log_metrics(scalar_metrics, step=step)
             self.logger.save()
 

@@ -105,9 +105,6 @@ class LightningLoggerBase(ABC):
         elif len(self._metrics_to_agg) == 1:
             agg_mets = self._metrics_to_agg[0]
         else:
-            print("self._metrics_to_agg", self._metrics_to_agg)
-            print("self._agg_key_funcs", self._agg_key_funcs)
-            print("self._agg_default_func", self._agg_default_func)
             agg_mets = merge_dicts(self._metrics_to_agg, self._agg_key_funcs, self._agg_default_func)
         return self._prev_step, agg_mets
 
@@ -132,7 +129,7 @@ class LightningLoggerBase(ABC):
         print("metrics", metrics.keys())
         agg_step, metrics_to_log = self._aggregate_metrics(metrics=metrics, step=step)
 
-        if metrics_to_log:
+        if metrics_to_log:self._metrics_to_agg
             self.log_metrics(metrics=metrics_to_log, step=agg_step)
 
     @abstractmethod
@@ -383,8 +380,6 @@ def merge_dicts(
         if isinstance(values_to_agg[0], dict):
             d_out[k] = merge_dicts(values_to_agg, fn, default_func)
         else:
-            print("fn or default_func", fn or default_func)
-            print("values_to_agg", values_to_agg)
             d_out[k] = (fn or default_func)(values_to_agg)
 
     return d_out
