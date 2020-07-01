@@ -549,6 +549,8 @@ class TrainerTrainLoopMixin(ABC):
             # add metrics to progress_bar
             self.add_progress_bar_metrics(_processed_outputs[1])
 
+            self.increment_accumulated_grad_global_step()
+
     def sync_horovod(self):
         if self.use_horovod:
             hvd.join(hvd.local_rank() if self.on_gpu else -1)
