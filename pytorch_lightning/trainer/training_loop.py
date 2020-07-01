@@ -506,6 +506,8 @@ class TrainerTrainLoopMixin(ABC):
         # epoch end hook
         self.run_on_epoch_end_hook(model)
 
+        self.increment_accumulated_grad_global_step()
+
         print("EPOCH_END")
 
     def check_checkpoint_callback(self, should_check_val):
