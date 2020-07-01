@@ -539,8 +539,6 @@ class TrainerTrainLoopMixin(ABC):
             callback_epoch_metrics = _processed_outputs[3]
 
             # add the metrics to the loggers
-            print("run_training_epoch_end", "log_epoch_metrics")
-            print(log_epoch_metrics)
             self.log_metrics(log_epoch_metrics, {})
 
             # add metrics to callbacks
