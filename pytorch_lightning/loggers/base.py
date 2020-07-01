@@ -129,7 +129,7 @@ class LightningLoggerBase(ABC):
         print("metrics", metrics.keys())
         agg_step, metrics_to_log = self._aggregate_metrics(metrics=metrics, step=step)
 
-        if metrics_to_log:self._metrics_to_agg
+        if metrics_to_log:
             self.log_metrics(metrics=metrics_to_log, step=agg_step)
 
     @abstractmethod
