@@ -126,7 +126,6 @@ class LightningLoggerBase(ABC):
             metrics: Dictionary with metric names as keys and measured quantities as values
             step: Step number at which the metrics should be recorded
         """
-        print("metrics", metrics.keys())
         agg_step, metrics_to_log = self._aggregate_metrics(metrics=metrics, step=step)
 
         if metrics_to_log:

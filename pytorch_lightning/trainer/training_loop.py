@@ -508,8 +508,6 @@ class TrainerTrainLoopMixin(ABC):
         # epoch end hook
         self.run_on_epoch_end_hook(model)
 
-        # self.increment_accumulated_grad_global_step()
-
         print("EPOCH_END")
 
     def check_checkpoint_callback(self, should_check_val):
@@ -549,7 +547,7 @@ class TrainerTrainLoopMixin(ABC):
             # add metrics to progress_bar
             self.add_progress_bar_metrics(_processed_outputs[1])
 
-            self.increment_accumulated_grad_global_step()
+            self.global_step += 1
 
     def sync_horovod(self):
         if self.use_horovod:
