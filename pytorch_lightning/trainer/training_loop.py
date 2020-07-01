@@ -506,7 +506,7 @@ class TrainerTrainLoopMixin(ABC):
         # epoch end hook
         self.run_on_epoch_end_hook(model)
 
-        self.increment_accumulated_grad_global_step()
+        # self.increment_accumulated_grad_global_step()
 
         print("EPOCH_END")
 
