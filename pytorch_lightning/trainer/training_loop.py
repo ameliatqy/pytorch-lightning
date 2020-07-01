@@ -421,8 +421,6 @@ class TrainerTrainLoopMixin(ABC):
                 model.on_epoch_start()
 
     def run_training_epoch(self):
-        print("EPOCH_START")
-
 
         # get model
         model = self.get_model()
@@ -506,7 +504,6 @@ class TrainerTrainLoopMixin(ABC):
         # epoch end hook
         self.run_on_epoch_end_hook(model)
 
-        print("EPOCH_END")
 
     def check_checkpoint_callback(self, should_check_val):
         # when no val loop is present or fast-dev-run still need to call checkpoints
