@@ -199,6 +199,11 @@ class ModelIO(object):
             # filter kwargs according to class init unless it allows any argument via kwargs
             cls_kwargs = {k: v for k, v in cls_kwargs.items() if k in cls_init_args_name}
 
+        print("cls_args")
+        print(cls_args)
+        print("cls_kwargs")
+        print(cls_kwargs)
+
         # prevent passing positional arguments if class does not accept any
         if len(cls_spec.args) <= 1 and not cls_spec.kwonlyargs:
             cls_args, cls_kwargs = [], {}
